@@ -1,4 +1,4 @@
-# koob
+# kuber
 
 A friendly wrapper around [kubernetes-client](https://github.com/godaddy/kubernetes-client), with the goal of providing a more expressive API for managing Kubernetes resources in Node.js.
 
