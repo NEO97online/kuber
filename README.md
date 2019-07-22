@@ -24,6 +24,7 @@ import { GoogleKuber, yaml } from 'kuber'
 
 const kuber = await GoogleKuber('us-east1', 'my-cluster')
 
+// create deployment from raw yaml string
 await kuber.createDeployment(yaml`
   apiVersion: v1
   kind: Pod
@@ -42,6 +43,7 @@ await kuber.createDeployment(yaml`
     restartPolicy: Always
 `)
 
+// create service from config file
 await kuber.createService(await config(
   [__dirname, 'service.yaml'],
   { 
