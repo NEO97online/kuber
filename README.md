@@ -4,10 +4,16 @@ A friendly wrapper around [kubernetes-client](https://github.com/godaddy/kuberne
 
 >⚠️ This library is in its initial phase of development. It is not yet production-ready.
 
-*This library is currently being developed in parallel to internal software. It will not initially cover every use-case, but will evolve over time to fit the majority of Kubernetes needs.*
 
-*If you have a specific feature request, feel free to create an Issue or submit a Pull Request.*
+**Features**:
 
+🐙 Simple API for managing Kubernetes resources - just simply `createDeployment()`, `getPods()`, etc.
+
+🔌 Plug-n-play connectors to various cloud providers (GKE)
+
+🔬 Config introspection: reads each config to figure out the exact endpoint to send it to
+
+🛠 Utilities for reading yaml files and strings
 
 ## Google Kubernetes Engine (GKE)
 
