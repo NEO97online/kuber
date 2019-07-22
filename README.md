@@ -2,6 +2,8 @@
 
 A friendly wrapper around [kubernetes-client](https://github.com/godaddy/kubernetes-client), with the goal of providing a more expressive API for managing Kubernetes resources in Node.js.
 
+⚠️ This library is in its initial phase of development. It is not yet production-ready.
+
 *This library is currently being developed in parallel to internal software. It will not initially cover every use-case, but will evolve over time to fit the majority of Kubernetes needs.*
 
 *If you have a specific feature request, feel free to create an Issue or submit a Pull Request.*
@@ -22,6 +24,7 @@ export GOOGLE_APPLICATION_CREDENTIALS="/home/user/Downloads/[FILE_NAME].json"
 ```js
 import { GoogleKuber, yaml } from 'kuber'
 
+// create a kuber client connected to GKE
 const kuber = await GoogleKuber('us-east1', 'my-cluster')
 
 // create deployment from raw yaml string
