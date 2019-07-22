@@ -17,3 +17,36 @@ Then, set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable pointing to 
 export GOOGLE_APPLICATION_CREDENTIALS="/home/user/Downloads/[FILE_NAME].json"
 ```
 
+## Usage
+
+```js
+import { GoogleKuber, yaml } from 'kuber'
+
+const kuber = await GoogleKuber('us-east1', 'my-cluster')
+
+await kuber.createDeployment(yaml`
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    name: busybox1
+    labels:
+      app: busybox1
+  spec:
+    containers:
+    - image: busybox
+      command:
+        - sleep
+        - "3600"
+      imagePullPolicy: IfNotPresent
+      name: busybox
+    restartPolicy: Always
+`)
+
+await kuber.createService(await config(
+  [__dirname, 'service.yaml'],
+  { 
+    __IP_ADDRESS__: process.env.SVC_IP_ADDRESS,
+    __HOSTNAME__: process.env.SVC_HOSTNAME
+  }
+))
+```
