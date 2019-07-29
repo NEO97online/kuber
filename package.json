@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "A friendly wrapper around [kubernetes-client](https://github.com/godaddy/kubernetes-client), with the goal of providing a more expressive API for managing Kubernetes resources in Node.js.",
   "main": "./build/index.js",
+  "engines": {
+    "node": "10.15.3"
+  },
   "scripts": {
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
@@ -20,7 +23,7 @@
     "@types/yaml": "^1.0.2",
     "fs-extra": "^8.1.0",
     "google-auth-library": "^4.2.5",
-    "kubernetes-client": "^8.3.1",
+    "kubernetes-client": "^8.3.3",
     "node-fetch": "^2.6.0",
     "yaml": "^1.6.0"
   },
@@ -30,6 +33,7 @@
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.4.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
+    "@babel/plugin-proposal-private-methods": "^7.4.4",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-typescript": "^7.3.3",
     "jest": "^24.8.0",
