@@ -12,7 +12,7 @@
     "build": "npm run build:types && npm run build:js",
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel src --out-dir build --extensions \".ts,.tsx\" --source-maps inline",
-    "prepack": "npm run build"
+    "prepack": "npm i -D && npm run build"
   },
   "keywords": [],
   "author": "",
