@@ -1,3 +1,5 @@
+import { exec, ChildProcess } from 'child_process'
+
 export default function Kuber(client: any, defaultNamespace = 'default') {
   return {
     client,
@@ -40,6 +42,34 @@ export default function Kuber(client: any, defaultNamespace = 'default') {
 
     getPods(namespace = defaultNamespace) {
       return client.api.v1.namespaces(namespace).pods.get()
+    },
+
+    async getPod(namespace = defaultNamespace, containerName: string) {
+      const { body: { items: pods } } = await client.api.v1.namespaces(namespace).pods.get()
+      const wordpressPod = pods.find((pod: any) => !!pod.spec.containers.find((container: any) => container.name === containerName))
+      if (!wordpressPod) {
+        throw new Error(`Failed to find a wordpress pod for site: ${namespace}`)
+      }
+      return wordpressPod
+    },
+
+    kubectl(cmd: string): ChildProcess {
+      return exec(`kubectl ${cmd}`)
+    },
+
+    copy(from: string, to: string, options?: { namespace: string, container: string }): ChildProcess {
+      let cmd = `kubectl cp ${from} ${to}`
+      if (options && options.namespace) {
+        cmd += ` --namespace ${options.namespace}`
+      }
+      if (options && options.container) {
+        cmd += ` --container ${options.container}`
+      }
+      return exec(cmd)
+    },
+
+    exec(cmd: string): ChildProcess {
+      return exec(`kubectl exec ${cmd}`)
     }
   }
 }
