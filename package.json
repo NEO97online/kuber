@@ -1,6 +1,6 @@
 {
   "name": "node-kuber",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A friendly wrapper around [kubernetes-client](https://github.com/godaddy/kubernetes-client), with the goal of providing a more expressive API for managing Kubernetes resources in Node.js.",
   "main": "build/index.js",
   "types": "build/index.d.ts",
