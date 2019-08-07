@@ -28,7 +28,7 @@ export GOOGLE_APPLICATION_CREDENTIALS="/home/user/Downloads/[FILE_NAME].json"
 ## Usage
 
 ```js
-import { GoogleKuber, yaml } from 'kuber'
+import { GoogleKuber, yaml } from 'node-kuber'
 
 // create a kuber client connected to GKE
 const kuber = await GoogleKuber('us-east1', 'my-cluster')
