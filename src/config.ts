@@ -19,9 +19,18 @@ export async function config(filePath: string | string[], replacements: Replacem
   if (Array.isArray(filePath)) {
     filePath = path.join(...filePath)
   }
-  const file = (useCache && cache[filePath]) || await fs.readFile(filePath, 'utf8')
-  const data = YAML.parse(file)
+
+  let data: string
+
+  if (useCache) {
+    data = cache[filePath]
+  } else {
+    const file = await fs.readFile(filePath, 'utf8')
+    data = YAML.parse(file)
+  }
+
   cache[filePath] = data
+  
   return replaceInObject(data, replacements)
 }
 
