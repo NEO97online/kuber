@@ -9,19 +9,36 @@ export default function Kuber(client: any, defaultNamespace = 'default') {
       return client.api.v1.namespaces.post({ body })
     },
 
+    deleteNamespace(name: string) {
+      return client.api.v1.namespaces(name).delete()
+    },
+
     createSecret(body: any, namespace = defaultNamespace) {
       return client.api.v1.namespaces(namespace).secrets.post({ body })
+    },
+
+    deleteSecret(name: string, namespace = defaultNamespace) {
+      return client.api.v1.namespaces(namespace).secrets(name).delete()
     },
 
     createDeployment(body: any, namespace = defaultNamespace) {
       const [apiName, apiVersion] = body.apiVersion.split("/")
       return client.apis[apiName][apiVersion]
         .namespaces(namespace)
-        .deployments.post({ body })
+        .deployments
+        .post({ body })
+    },
+
+    deleteDeployment(name: string, namespace = defaultNamespace) {
+      return client.apis.apps.v1beta1.namespaces(namespace).deployments(name).delete()
     },
 
     createService(body: any, namespace = defaultNamespace) {
       return client.api.v1.namespaces(namespace).services.post({ body })
+    },
+
+    deleteService(name: string, namespace = defaultNamespace) {
+      return client.api.v1.namespaces(namespace).services(name).delete()
     },
 
     createIngress(body: any, namespace = defaultNamespace) {
@@ -30,14 +47,26 @@ export default function Kuber(client: any, defaultNamespace = 'default') {
         .ingresses.post({ body })
     },
 
+    deleteIngress(name: string, namespace = defaultNamespace) {
+      return client.apis.extensions.v1beta1.namespaces(namespace).ingresses(name).delete()
+    },
+
     createPersistentVolume(body: any) {
       return client.api.v1.persistentvolumes.post({ body })
+    },
+
+    deletePersistentVolume(name: string) {
+      return client.api.v1.persistentvolumes(name).delete()
     },
 
     createPersistentVolumeClaim(body: any, namespace = defaultNamespace) {
       return client.api.v1
         .namespaces(namespace)
         .persistentvolumeclaims.post({ body })
+    },
+
+    deletePersistentVolumeClaim(name: string, namespace = defaultNamespace) {
+      return client.api.v1.namespaces(namespace).persistentvolumeclaims(name).delete()
     },
 
     getPods(namespace = defaultNamespace) {
