@@ -22,7 +22,7 @@ export async function config(filePath: string | string[], replacements: Replacem
 
   let data: string
 
-  if (useCache) {
+  if (useCache && cache[filePath]) {
     data = cache[filePath]
   } else {
     const file = await fs.readFile(filePath, 'utf8')
