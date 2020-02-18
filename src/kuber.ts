@@ -97,8 +97,15 @@ export default function Kuber(client: any, defaultNamespace = 'default') {
       return exec(cmd)
     },
 
-    exec(cmd: string): ChildProcess {
-      return exec(`kubectl exec ${cmd}`)
+    exec(namespace = defaultNamespace, pod: string, container: string, command: string[]) {
+      return client.api.v1.namespaces(namespace).pods(pod).exec.post({
+        qs: {
+          container,
+          command,
+          stdout: true,
+          stderr: true
+        }
+      })
     }
   }
 }
